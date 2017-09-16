@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My App</title>
+    <link rel="stylesheet" href="antd.css">
+  </head>
+  <body>
+    <h5>ready ready ready to work</h5>
+    <button id="basic">文本通知</button>
+    <button id="image">图文通知</button>
+    <div id="app"></div>
+
+    <script src="./notify.js"></script>
+    <script src="./app.js" data-container="#app"></script>
+    <script>
+      if (process.env.BROWSER_SYNC_CLIENT_URL) {
+        const current = document.currentScript;
+        const script = document.createElement('script');
+        script.src = process.env.BROWSER_SYNC_CLIENT_URL;
+        script.async = true;
+        current.parentNode.insertBefore(script, current);
+      }
+    </script>
+  </body>
+</html>
