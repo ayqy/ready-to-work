@@ -1,0 +1,21 @@
+{
+  "name": "ready-to-work",
+  "version": "0.0.1",
+  "description": "the best pomodoro tool for engineers",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "~1.6.2"
+  }
+}
