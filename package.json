@@ -7,15 +7,16 @@
     "start": "electron ."
   },
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "pomodoro",
+    "timer",
+    "electron"
   ],
   "author": "GitHub",
   "license": "MIT",
   "devDependencies": {
     "electron": "~1.6.2"
+  },
+  "dependencies": {
+    "menubar": "^5.2.3"
   }
 }
