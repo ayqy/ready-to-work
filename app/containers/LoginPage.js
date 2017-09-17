@@ -13,6 +13,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onLogin: (data) => {
       user.login(data);
+      // todo 判断登录过期
       dispatch(push('/loggedin'));
     }
   };

@@ -20,7 +20,7 @@
     "private:serve": "babel-node scripts/serve.js",
     "private:compile": "npm run private:style && babel app/ --copy-files --out-dir build",
     "private:clean": "rimraf build",
-    "private:style": "cp -f node_modules/antd/dist/antd.css build/antd.css"
+    "private:style": "cp -f node_modules/antd/dist/antd.css build/antd.css; cp -rf app/css build/css"
   },
   "keywords": [
     "pomodoro",

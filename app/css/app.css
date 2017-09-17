@@ -1,0 +1,20 @@
+.main-header {
+  background-color: #f7f7f7;
+}
+.main-content {
+  margin-top: 6px;
+}
+.main-timerClock {
+  position: relative;
+  text-align: center;
+}
+.main-timerClock-abort {
+  position: absolute;
+  right: 50px;
+}
+.main-footer {
+  position: fixed;
+  left: 0; bottom: 0;
+  width: 100%;
+  background-color: #fafafa;
+}

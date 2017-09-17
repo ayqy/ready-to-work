@@ -21,15 +21,19 @@ export default function configureStore(initialState, routerHistory) {
 
   const middlewares = [ thunk, router ];
 
-  const composeEnhancers = (() => {
+  let enhancer;
+  // DONOT persistState in dev
+  if (process.env.NODE_ENV === 'development') {
+    let devCompose = compose;
     const compose_ = window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-    if(process.env.NODE_ENV === 'development' && compose_) {
-      return compose_({ actionCreators });
+    if(compose_) {
+      devCompose = compose_({ actionCreators });
     }
-    return compose;
-  })();
-
-  const enhancer = composeEnhancers(applyMiddleware(...middlewares), persistState());
+    enhancer = devCompose(applyMiddleware(...middlewares));
+  }
+  else {
+    enhancer = compose(applyMiddleware(...middlewares), persistState());
+  }
   const rootReducer = combineReducers(reducers);
 
   return createStore(rootReducer, initialState, enhancer);

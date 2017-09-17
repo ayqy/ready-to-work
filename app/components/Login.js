@@ -19,9 +19,10 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <h2>Login</h2>
-        <Input ref={(ref) => { this._inputRef = ref; }} placeholder="user name" type="text" />
-        <Button onClick={this.handleLogin}>Log In</Button>
+        <Button>返回</Button>
+        <Input ref={(ref) => { this._inputRef = ref; }} placeholder="账号" type="text" />
+        <Input placeholder="密码" type="password" />
+        <Button onClick={this.handleLogin}>登录</Button>
       </div>
     );
   }
