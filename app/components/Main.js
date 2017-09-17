@@ -20,7 +20,7 @@ export default class Main extends Component {
           handleTabChange={this.handleTabChange.bind(this)}
           handleHistoryClick={this.props.toHistoryPage}>
         </Header>
-        <div className="main-content">
+        <div className="main-content content">
           {this.state.activeTab === 'task' &&  <Task></Task>}
           {this.state.activeTab === 'pomodoro' &&  <Timer setTrayText={this.props.setTrayText}></Timer>}
         </div>

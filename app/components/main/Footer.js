@@ -5,7 +5,7 @@ export default class Header extends Component {
   render() {
     const padding = '6px';
     return (
-      <div className="main-footer">
+      <div className="main-footer footer">
         <Row style={{padding: `${padding} 0`}}>
           <Col span={8}>
             <Button onClick={this.props.handleSyncClick} style={{marginLeft: padding}} size="small" shape="circle" icon="sync" />

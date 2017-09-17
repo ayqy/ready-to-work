@@ -31,6 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "antd": "^2.13.2",
+    "auto-launch": "^5.0.1",
     "babel-runtime": "^6.22.0",
     "history": "^4.6.3",
     "menubar": "^5.2.3",

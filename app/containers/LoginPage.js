@@ -11,10 +11,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   const user = bindActionCreators(userActions, dispatch);
   return {
-    onLogin: (data) => {
+    login: (data) => {
       user.login(data);
       // todo 判断登录过期
       dispatch(push('/loggedin'));
+    },
+    toMainPage() {
+      dispatch(push('/'));
     }
   };
 };

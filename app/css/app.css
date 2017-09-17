@@ -1,8 +1,20 @@
-.main-header {
+.header {
   background-color: #f7f7f7;
 }
+.header-bar {
+  padding: 6px 0;
+  text-align: left;
+}
+.content {
+  margin-top: 18px;
+}
+.footer {
+  background-color: #fafafa;
+}
+
+.main-header {
+}
 .main-content {
-  margin-top: 6px;
 }
 .main-timerClock {
   position: relative;
@@ -16,5 +28,18 @@
   position: fixed;
   left: 0; bottom: 0;
   width: 100%;
-  background-color: #fafafa;
+}
+
+.login {
+  text-align: center;
+}
+.login-header {
+}
+.login-form {
+  display: inline-block;
+  text-align: left;
+  max-width: 320px;
+}
+.login-form-forgot {
+  float: right;
 }

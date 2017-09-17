@@ -12,6 +12,6 @@ export default (
     <Route exact path="/loggedin" component={MainPage} />
     <Route exact path="/login" component={LoginPage} />
     <Route exact path="/history" component={HistoryPage} />
-    <Route exact path="/setting" component={SettingPage} />
+    <Route exact path="/setting" render={() => <SettingPage/>} />
   </Switch>
 );

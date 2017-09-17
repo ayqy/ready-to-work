@@ -11,7 +11,7 @@ export default class Header extends Component {
   render() {
     const padding = '6px';
     return (
-      <div className="main-header">
+      <div className="main-header header">
         <Row style={{padding: `${padding} 0`}}>
           <Col span={8}>
             <Button onClick={this.props.handleHistoryClick} style={{marginLeft: padding}} size="small" shape="circle" icon="clock-circle-o" />

@@ -2,6 +2,7 @@ import path from 'path';
 import url from 'url';
 import {app, crashReporter, Menu} from 'electron';
 import menubar from 'menubar';
+import AutoLaunch from 'auto-launch';
 
 import * as ipcMain from './ipcMain';
 
@@ -50,6 +51,8 @@ mb.on('ready', async () => {
     }
   });
   let mainWindow = mb.window;
+  // disable resize
+  mainWindow.setResizable(false);
   let forceQuit = false;
   mainWindow && mainWindow.webContents.on('did-finish-load', () => {
     // Handle window logic properly on macOS:
@@ -102,6 +105,25 @@ mb.on('ready', async () => {
 //   submitURL: 'https://your-domain.com/url-to-submit',
 //   uploadToServer: false
 // });
+
+
+let autoLauncher = new AutoLaunch({
+    name: 'ReadyToWork'
+});
+
+autoLauncher.isEnabled()
+.then((isEnabled) => {
+  if(isEnabled){
+    return;
+  }
+  return autoLauncher.enable();
+})
+.then(res => {
+  console.log('auto launch enabled');
+})
+.catch((err) => {
+    console.error('enable auto launch failed. ' + err);
+});
 
 async function installExtensions() {
   const installer = require('electron-devtools-installer');
