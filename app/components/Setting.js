@@ -24,7 +24,7 @@ const defaultSetting = {
 const formItemLayout = {
   labelCol: {
     span: 8,
-    offset: 2
+    offset: 4
   },
   wrapperCol: {
     span: 10,
@@ -162,9 +162,8 @@ class SettingForm extends Component {
               <Checkbox></Checkbox>
             )}
           </FormItem>
-
-          <FormItem style={{textAlign: 'center'}}>
-            <Button size="small" onClick={this.resetToDefault.bind(this)}>
+          <FormItem style={{marginBottom: 0, textAlign: 'center'}}>
+            <Button style={{marginRight: '10px'}} size="small" onClick={this.resetToDefault.bind(this)}>
               推荐设置
             </Button>
             <Button size="small" htmlType="submit" className="setting-form-button">
@@ -181,6 +180,9 @@ class SettingForm extends Component {
       if (!err) {
         // console.log('Received values of form: ', values);
         this.props.saveSetting(values);
+      }
+      else {
+        console.error(err);
       }
     });
   }

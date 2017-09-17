@@ -1,14 +1,16 @@
 import { connect } from 'react-redux';
+
 import Setting from '../components/Setting';
+import actions from '../actions/Setting';
 
 const mapStateToProps = (state) => {
-  return state;
+  return {...state.setting};
 };
 
-const mapDispatchToProps = (dispatch) => { // eslint-disable-line no-unused-vars
+const mapDispatchToProps = (dispatch) => {
   return {
-    saveSetting(formData) {
-      dispatch({type: 'saveSetting', payload: {formData}});
+    saveSetting(setting) {
+      dispatch(actions.update(setting));
     }
   };
 };

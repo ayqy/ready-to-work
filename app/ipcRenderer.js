@@ -11,3 +11,11 @@ ipcRenderer.on('stickWindow', (event, result) => {
 export function setTrayText(trayText) {
   ipcRenderer.sendSync('setTrayText', trayText);
 }
+
+export function saveSetting(kv) {
+  ipcRenderer.sendSync('saveSetting', kv);
+}
+
+export function readSetting(kv) {
+  return ipcRenderer.sendSync('readSetting');
+}

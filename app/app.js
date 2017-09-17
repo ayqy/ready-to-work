@@ -6,6 +6,7 @@ import { createMemoryHistory } from 'history';
 import routes from './routes';
 import configureStore from './store';
 
+import * as ipcRenderer from './ipcRenderer';
 // import 'antd/dist/antd.css';
 
 const syncHistoryWithStore = (store, history) => {
@@ -15,7 +16,11 @@ const syncHistoryWithStore = (store, history) => {
   }
 };
 
-const initialState = {};
+const setting = ipcRenderer.readSetting();
+console.log(setting);
+const initialState = {
+  setting
+};
 const routerHistory = createMemoryHistory();
 const store = configureStore(initialState, routerHistory);
 syncHistoryWithStore(store, routerHistory);

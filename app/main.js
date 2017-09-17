@@ -4,6 +4,7 @@ import {app, crashReporter, Menu} from 'electron';
 import menubar from 'menubar';
 import AutoLaunch from 'auto-launch';
 
+import storage from './storage';
 import * as ipcMain from './ipcMain';
 
 const isDevelopment = (process.env.NODE_ENV === 'development');
@@ -26,7 +27,7 @@ let mb = menubar({
   height: 400,
   preloadWindow: true
 });
-ipcMain.init(mb);
+ipcMain.init(mb, storage);
 
 // ready - when the app has been created and initialized
 // create-window - the line before new BrowserWindow is called

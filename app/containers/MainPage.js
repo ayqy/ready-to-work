@@ -30,7 +30,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({type: 'sync'});
     },
     stickWindow: ipcRenderer.stickWindow,
-    setTrayText: ipcRenderer.setTrayText
+    setTrayText: ipcRenderer.setTrayText,
+    readSetting: ipcRenderer.readSetting
   };
 };
 

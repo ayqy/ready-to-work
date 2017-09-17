@@ -5,18 +5,22 @@ import thunk from 'redux-thunk';
 
 import user from './reducers/user';
 import userActions from './actions/user';
+import setting from './reducers/setting';
+import settingActions from './actions/setting';
 
 export default function configureStore(initialState, routerHistory) {
   const router = routerMiddleware(routerHistory);
 
   const actionCreators = {
     ...userActions,
+    ...settingActions,
     push
   };
 
   const reducers = {
     user,
-    routing
+    routing,
+    setting
   };
 
   const middlewares = [ thunk, router ];
