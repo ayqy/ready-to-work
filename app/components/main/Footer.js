@@ -8,7 +8,7 @@ export default class Header extends Component {
       <div className="main-footer">
         <Row style={{padding: `${padding} 0`}}>
           <Col span={8}>
-            <Button onClick={this.props.handleLoginClick} style={{marginLeft: padding}} size="small" shape="circle" icon="sync" />
+            <Button onClick={this.props.handleSyncClick} style={{marginLeft: padding}} size="small" shape="circle" icon="sync" />
           </Col>
           <Col span={8} offset={8} style={{textAlign: 'right'}}>
             <Button onClick={this.props.handleLoginClick} style={{marginRight: padding}} size="small" shape="circle" icon="user" />

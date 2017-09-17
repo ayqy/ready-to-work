@@ -5,6 +5,9 @@ export default class Header extends Component {
   propsTypes = {
     activeTab: PropTypes.string.isRequired
   };
+  state = {
+    stickWindow: false
+  };
   render() {
     const padding = '6px';
     return (
@@ -20,7 +23,7 @@ export default class Header extends Component {
             </Radio.Group>
           </Col>
           <Col span={8} style={{textAlign: 'right'}}>
-            <Button onClick={this.props.stickWindow} style={{marginRight: padding}} size="small" shape="circle" icon="pushpin-o" />
+            <Button onClick={this.handleStickClick.bind(this)} style={{marginRight: padding}} size="small" shape="circle" icon="pushpin-o" />
           </Col>
         </Row>
       </div>
@@ -28,5 +31,12 @@ export default class Header extends Component {
   }
   handleTabChange(e) {
     this.props.handleTabChange(e.target.value);
+  }
+  handleStickClick(e) {
+    const nextStickState = !this.state.stickWindow;
+    this.setState({
+      stickWindow: nextStickState
+    });
+    this.props.stickWindow(nextStickState);
   }
 }

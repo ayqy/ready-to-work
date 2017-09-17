@@ -14,12 +14,21 @@ export default class Main extends Component {
   render() {
     return (
       <div>
-        <Header activeTab={this.state.activeTab} handleTabChange={this.handleTabChange.bind(this)} handleHistoryClick={this.props.toHistoryPage}></Header>
+        <Header
+          activeTab={this.state.activeTab}
+          stickWindow={this.props.stickWindow}
+          handleTabChange={this.handleTabChange.bind(this)}
+          handleHistoryClick={this.props.toHistoryPage}>
+        </Header>
         <div className="main-content">
           {this.state.activeTab === 'task' &&  <Task></Task>}
-          {this.state.activeTab === 'pomodoro' &&  <Timer></Timer>}
+          {this.state.activeTab === 'pomodoro' &&  <Timer setTrayText={this.props.setTrayText}></Timer>}
         </div>
-        <Footer handleLoginClick={this.props.toLoginPage} handleSettingClick={this.props.toSettingPage}></Footer>
+        <Footer
+          handleSyncClick={this.props.sync}
+          handleLoginClick={this.props.toLoginPage}
+          handleSettingClick={this.props.toSettingPage}>
+        </Footer>
       </div>
     );
   }

@@ -1,8 +1,9 @@
 import path from 'path';
 import url from 'url';
 import {app, crashReporter, Menu} from 'electron';
-
 import menubar from 'menubar';
+
+import * as ipcMain from './ipcMain';
 
 const isDevelopment = (process.env.NODE_ENV === 'development');
 
@@ -22,8 +23,9 @@ let mb = menubar({
   icon: path.join(__dirname, './resources/icon/tray.png'),
   width: 400,
   height: 400,
-  // alwaysOnTop: true
+  preloadWindow: true
 });
+ipcMain.init(mb);
 
 // ready - when the app has been created and initialized
 // create-window - the line before new BrowserWindow is called
@@ -48,6 +50,7 @@ mb.on('ready', async () => {
     }
   });
   let mainWindow = mb.window;
+  let forceQuit = false;
   mainWindow && mainWindow.webContents.on('did-finish-load', () => {
     // Handle window logic properly on macOS:
     // 1. App should not terminate if window has been closed
@@ -67,6 +70,8 @@ mb.on('ready', async () => {
 
       app.on('before-quit', () => {
         forceQuit = true;
+        // remove all listener
+        ipcMain.clear();
       });
     } else {
       mainWindow.on('closed', () => {

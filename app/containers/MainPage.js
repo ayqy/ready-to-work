@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
+
 import Main from '../components/Main';
 import userActions from '../actions/user';
+import * as ipcRenderer from '../ipcRenderer';
 
 const mapStateToProps = (state) => {
   return state;
@@ -11,22 +13,24 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   const user = bindActionCreators(userActions, dispatch);
   return {
-    onLogin: (data) => {
+    onLogin(data) {
       user.login(data);
-      dispatch('loggin');
+      dispatch({type: 'loggin'});
     },
-    stickWindow: (data) => {
-      dispatch('stickWindow');
+    toHistoryPage() {
+      dispatch(push('/history'));
     },
-    toHistoryPage: () => {
-        dispatch(push('/history'));
+    toLoginPage() {
+      dispatch(push('/login'));
     },
-    toLoginPage: () => {
-        dispatch(push('/login'));
+    toSettingPage() {
+      dispatch(push('/setting'));
     },
-    toSettingPage: () => {
-        dispatch(push('/setting'));
-    }
+    sync() {
+      dispatch({type: 'sync'});
+    },
+    stickWindow: ipcRenderer.stickWindow,
+    setTrayText: ipcRenderer.setTrayText
   };
 };
 

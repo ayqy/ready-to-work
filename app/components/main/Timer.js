@@ -41,6 +41,9 @@ export default class Timer extends Component {
   componentDidMount() {
     this.tickTock();
   }
+  componentWillUnmount() {
+    this.stopTimer();
+  }
   onNotify(type) {
     switch (type) {
         case NOTIFY_TYPES.PLAIN:
@@ -57,6 +60,7 @@ export default class Timer extends Component {
     this.stopTimer();
     // reset
     this.setState({...initialState});
+    this.props.setTrayText(initialState.countDown);
   }
   stopTimer() {
     clearInterval(this.timer);
@@ -66,10 +70,12 @@ export default class Timer extends Component {
     let now = this.props.duration * 60;
     this.timer = setInterval(() => {
       if (!now--) this.stopTimer();
+      const countDown = this.formatTime(now)
       this.setState({
         percent: now > 0 ? (1 - now / TOTAL) * 100 : 100,
-        countDown: this.formatTime(now)
+        countDown
       });
+      this.props.setTrayText(countDown);
     }, 1000);
   }
   formatTime(seconds) {
