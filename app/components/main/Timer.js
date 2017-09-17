@@ -19,13 +19,22 @@ export default class Timer extends Component {
       <div className="main-timer">
         <div className="main-timerClock">
           <Button className="main-timerClock-abort" onClick={this.abortTimer.bind(this)} type="danger" size="large" shape="circle" icon="close" />
-          <Progress type="circle" percent={this.state.percent} width={200} format={percent => percent >= 100 ? 'Done' : this.state.countDown || this.defaultCountDown} />
+          <div className="main-timerClock-container">
+            <Progress
+              style={{opacity: this.timer ? 1 : 0.1}}
+              type="circle" width={200}
+              percent={this.state.percent}
+              format={percent => percent >= 100 ? 'Done' : this.state.countDown || this.defaultCountDown} />
+            <div
+              style={{visibility: this.timer ? 'hidden' : 'visible'}}
+              className="main-timerClock-mask"
+              onClick={this.tickTock.bind(this)} >
+              <span className="main-timerClock-maskText">Start Now!</span>
+            </div>
+          </div>
         </div>
       </div>
     );
-  }
-  componentDidMount() {
-    this.tickTock();
   }
   componentWillUnmount() {
     this.stopTimer();
@@ -49,8 +58,10 @@ export default class Timer extends Component {
   }
   stopTimer() {
     clearInterval(this.timer);
+    this.timer = null;
   }
   tickTock() {
+    if (this.timer) return;
     const duration = this.duration;
     const TOTAL = duration * 60;
     let now = duration * 60;
