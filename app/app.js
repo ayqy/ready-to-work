@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
@@ -27,11 +27,17 @@ syncHistoryWithStore(store, routerHistory);
 
 const rootElement = document.querySelector(document.currentScript.getAttribute('data-container'));
 
+class App extends Component {
+  render() {
+    return <Provider store={store}>
+      <ConnectedRouter history={routerHistory}>
+        {routes}
+      </ConnectedRouter>
+    </Provider>
+  }
+}
+
 ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={routerHistory}>
-      {routes}
-    </ConnectedRouter>
-  </Provider>,
+  <App/>,
   rootElement
 );
