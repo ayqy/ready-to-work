@@ -8,7 +8,7 @@ import storage from './storage';
 import * as ipcMain from './ipcMain';
 
 const isDevelopment = (process.env.NODE_ENV === 'development');
-
+const setting = storage.store;
 
 // mb = {
 //   app: the electron require('app') instance,
@@ -27,7 +27,8 @@ let mb = menubar({
   height: 400,
   preloadWindow: true
 });
-ipcMain.init(mb, storage);
+ipcMain.init(mb, storage, setting);
+
 
 // ready - when the app has been created and initialized
 // create-window - the line before new BrowserWindow is called
@@ -42,7 +43,9 @@ mb.on('ready', async () => {
     await installExtensions();
   }
   // show timer at mac status bar
-  mb.tray.setTitle('25:00');
+  if (setting.tray_timer) {
+    mb.tray.setTitle(setting.duration + ':00');
+  }
 
   app.on('window-all-closed', () => {
     // On OS X it is common for applications and their menu bar
@@ -117,13 +120,13 @@ autoLauncher.isEnabled()
   if(isEnabled){
     return;
   }
-  return autoLauncher.enable();
+  return setting.auto_launch ? autoLauncher.enable() : autoLauncher.disable();
 })
 .then(res => {
-  console.log('auto launch enabled');
+  console.log('auto launch changed');
 })
 .catch((err) => {
-    console.error('enable auto launch failed. ' + err);
+    console.error('auto launch error ' + err);
 });
 
 async function installExtensions() {

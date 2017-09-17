@@ -22,7 +22,10 @@ export default class Main extends Component {
         </Header>
         <div className="main-content content">
           {this.state.activeTab === 'task' &&  <Task></Task>}
-          {this.state.activeTab === 'pomodoro' &&  <Timer setTrayText={this.props.setTrayText}></Timer>}
+          {this.state.activeTab === 'pomodoro' && <Timer
+            setTrayText={this.props.setTrayText}
+            setting={this.props.setting}></Timer>
+          }
         </div>
         <Footer
           handleSyncClick={this.props.sync}

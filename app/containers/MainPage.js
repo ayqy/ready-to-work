@@ -7,7 +7,9 @@ import userActions from '../actions/user';
 import * as ipcRenderer from '../ipcRenderer';
 
 const mapStateToProps = (state) => {
-  return state;
+  return {
+    setting: state.setting
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

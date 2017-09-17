@@ -2,13 +2,14 @@
 import {ipcMain} from 'electron';
 
 let listenerMap = {};
-export function init(menubar, storage) {
+export function init(menubar, storage, setting) {
   ipcMain.on('stickWindow', listenerMap['stickWindow'] = (event, shouldStick) => {
     menubar.setOption('alwaysOnTop', shouldStick);
     event.sender.send('stickWindow', 0);
   });
 
   ipcMain.on('setTrayText', listenerMap['setTrayText'] = (event, trayText) => {
+    if (!setting.tray_timer) return;
     menubar.tray.setTitle(trayText);
     event.returnValue = 0;
   });
