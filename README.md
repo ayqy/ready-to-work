@@ -19,7 +19,7 @@ A well-designed pomodoro tool, which focus on more effective time management.
 ##  Development
 
 ```bash
-npm run develop
+npm run dev
 ```
 
 ## Packaging

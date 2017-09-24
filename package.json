@@ -4,7 +4,7 @@
   "description": "the best pomodoro tool for engineers",
   "main": "init.js",
   "scripts": {
-    "develop": "npm run private:compile -- --source-maps true && npm run private:style && run-p -r private:watch private:serve",
+    "dev": "npm run private:compile -- --source-maps true && npm run private:style && run-p -r private:watch private:serve",
     "test": "electron-mocha --renderer -R spec --compilers js:babel-core/register test/**/*.spec.js",
     "lint": "eslint --no-ignore scripts app test *.js",
     "pack": "run-s private:clean private:compile private:style private:pack",
@@ -13,7 +13,7 @@
     "private:compile": "babel app/ --copy-files --out-dir build",
     "private:pack": "electron-packager . ReadyToWork --out=./dist",
     "private:clean": "rimraf build dist",
-    "private:style": "cp -f node_modules/antd/dist/antd.css build/antd.css; cp -rf app/css build/css"
+    "private:style": "lessc --npm-import app/css/vendor.less build/css/vendor.css --clean-css='--s1 --advanced'"
   },
   "keywords": [
     "pomodoro",
@@ -58,6 +58,9 @@
     "electron-packager": "^9.1.0",
     "eslint": "^4.3.0",
     "eslint-plugin-react": "^7.1.0",
+    "less": "^2.7.2",
+    "less-plugin-clean-css": "^1.5.1",
+    "less-plugin-npm-import": "^2.1.0",
     "npm-run-all": "^4.0.1",
     "redux-mock-store": "^1.2.2",
     "rimraf": "^2.5.4"
