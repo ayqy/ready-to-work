@@ -1,6 +1,6 @@
-appId: com.example.app
-copyright: Example co
-productName: MyApp
+appId: net.ayqy.readytowork
+copyright: ayqy
+productName: ReadyToWork
 
 asar: true
 
